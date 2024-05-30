@@ -1,0 +1,28 @@
+name: SvelteKit Template
+components:
+  - name: SvelteKitApp
+    type: service
+    image: node:20-alpine
+    port: 3000
+    build:
+      steps:
+        - copy: [package.json, package-lock.json]
+        - run: npm ci
+        - copy: [.npmrc, svelte.config.js, vite.config.js]
+        - copy: static/
+        - copy: src/
+        - run: npm run build
+        - image: node:20-alpine
+          stage: server
+        - copy: package.json
+          from: main
+        - copy: build/
+          from: main
+
+    runtime:
+      command: node build
+      variables:
+        NODE_ENV: production
+routes:
+  - target:
+      component: SvelteKitApp
