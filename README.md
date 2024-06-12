@@ -1,38 +1,18 @@
-# create-svelte
+# SvelteKit SSR Template for Noop
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
+This repository contains a [SvelteKit](https://kit.svelte.dev/) project bootstrapped with [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte). The purpose of the repository is to act as a starting point for a new application running on the [Noop Developer Platform](https://noop.dev/).
 
-## Creating a project
+## Getting Started
 
-If you're seeing this, you've probably already done this step. Congrats!
+To create and run an instance of this Template [install Workshop](https://noop.dev/docs/installation/) and select the SvelteKit SSR Template.
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+Navigate to the Environment dashboard in Noop Workshop and toggle the `Active` switch.
 
-# create a new project in my-app
-npm create svelte@latest my-app
-```
+Clicking the endpoint link from the Environment dashboard will load the app in your browser.
 
-## Developing
+You can start editing the page by modifying files within the `src` directory. The page will auto-updates as you edit the file.
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+## Learn More about Noop
 
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+- [Noop Developer Platform](https://noop.dev/)
+- [Noop Documentation](https://noop.dev/docs/)
