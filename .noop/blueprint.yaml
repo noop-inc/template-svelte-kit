@@ -2,7 +2,7 @@ name: SvelteKit Template
 components:
   - name: SvelteKitApp
     type: service
-    image: node:20-alpine
+    image: node:22-alpine
     port: 3000
     build:
       steps:
@@ -12,7 +12,7 @@ components:
         - copy: static/
         - copy: src/
         - run: npm run build
-        - image: node:20-alpine
+        - image: node:22-alpine
           stage: server
         - copy: package.json
           from: main
