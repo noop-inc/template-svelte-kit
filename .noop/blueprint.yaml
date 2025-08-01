@@ -1,4 +1,4 @@
-name: SvelteKit Template
+name: SvelteKit SSR Template
 components:
   - name: SvelteKitApp
     type: service

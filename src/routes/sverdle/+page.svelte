@@ -2,9 +2,12 @@
 	import { enhance } from '$app/forms';
 	import { confetti } from '@neoconfetti/svelte';
 
-	import { reducedMotion } from './reduced-motion';
+	import { MediaQuery } from 'svelte/reactivity';
 
 	let { data, form = $bindable() } = $props();
+
+	/** Whether the user prefers reduced motion */
+	const reducedMotion = new MediaQuery('(prefers-reduced-motion: reduce)');
 
 	/** Whether or not the user has won */
 	let won = $derived(data.answers.at(-1) === 'xxxxx');
@@ -13,12 +16,7 @@
 	let i = $derived(won ? -1 : data.answers.length);
 
 	/** The current guess */
-	// svelte-ignore state_referenced_locally
-	let currentGuess = $state(data.guesses[i] || '');
-
-	$effect(() => {
-		currentGuess = data.guesses[i] || '';
-	});
+	let currentGuess = $derived(data.guesses[i] || '');
 
 	/** Whether the current guess can be submitted */
 	let submittable = $derived(currentGuess.length === 5);
@@ -77,7 +75,7 @@
 
 		document
 			.querySelector(`[data-key="${event.key}" i]`)
-			?.dispatchEvent(new MouseEvent('click', { cancelable: true }));
+			?.dispatchEvent(new MouseEvent('click', { cancelable: true, bubbles: true }));
 	}
 </script>
 
@@ -157,9 +155,9 @@
 					back
 				</button>
 
-				{#each ['qwertyuiop', 'asdfghjkl', 'zxcvbnm'] as row}
+				{#each ['qwertyuiop', 'asdfghjkl', 'zxcvbnm'] as row (row)}
 					<div class="row">
-						{#each row as letter}
+						{#each row as letter, index (index)}
 							<button
 								onclick={update}
 								data-key={letter}
@@ -184,7 +182,7 @@
 	<div
 		style="position: absolute; left: 50%; top: 30%"
 		use:confetti={{
-			particleCount: $reducedMotion ? 0 : undefined,
+			particleCount: reducedMotion.current ? 0 : undefined,
 			force: 0.7,
 			stageWidth: window.innerWidth,
 			stageHeight: window.innerHeight,
