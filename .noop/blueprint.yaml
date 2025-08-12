@@ -1,6 +1,7 @@
 name: SvelteKit SSR Template
 components:
   - name: SvelteKitApp
+    foo: bar
     type: service
     image: node:22-alpine
     port: 3000
